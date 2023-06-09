@@ -10,4 +10,4 @@ La prima è "DemoBasiDiDati" in cui usando i form si creano diverse interfacce p
   
 La seconda è "DemoBasiDiDatiSemplice" in cui c'è solo una classe Main in cui viene chiesto all' utente le operazioni che vuole fare.
 
-E' presente il file .jar in cui si possono fare prove della demo. Per semplicità ho creato solo 3 utenti amministratori delle edizioni 30, 31 e 32 delle olimpiadi, per autenticarsi bisogna inserire come username "Edizione<numeroEdizione>" e password "<numeroEdizione>" (numeroEdizione scritto in romano) come si vede dal video, 
+E' presente il file .jar in cui si possono fare prove della demo. Per semplicità ho creato solo 3 utenti amministratori delle edizioni 30, 31 e 32 delle olimpiadi, per autenticarsi bisogna inserire come username "Edizione<numeroEdizione>" e password "<numeroEdizione>" (numeroEdizione scritto in romano) come si vede dal video, e poi si possono accedere alle varie interfacce per le operazioni.
