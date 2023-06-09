@@ -51,35 +51,6 @@ public class OperationForm extends JDialog {
     setVisible(true);
   }
 
-  private boolean controllaPermessi() {
-    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/giochi_olimpici", user.username, user.password)) {
-
-      Statement statement = connection.createStatement();
-      ResultSet resultSet = statement.executeQuery("show grants for '" + user.username + "'@'%'");
-      int i = 0;
-      String privilegio = "";
-      while (resultSet.next()) {
-        if (i == 1) {
-          privilegio = resultSet.getString("Grants for " + user.username + "@%").split(" ")[1].toLowerCase();
-        }
-        i++;
-      }
-      if (!privilegio.equals("all")) {
-        JOptionPane.showMessageDialog(OperationForm.this,
-          "L'utente NON può eseguire l' operazione",
-          "Riprova",
-          JOptionPane.ERROR_MESSAGE);
-        return false;
-      }
-
-      resultSet.close();
-      statement.close();
-    } catch (Exception e) {
-      System.out.println(e);
-    }
-    return true;
-  }
-
   public static void operation(User user) {
     OperationForm operationForm = new OperationForm(null, user);
     user = operationForm.user;
