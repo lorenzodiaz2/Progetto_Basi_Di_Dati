@@ -1,0 +1,618 @@
+
+\documentclass[paper=a4, fontsize=12 pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage[top=90pt,bottom=100pt,left=66pt,right=66pt]{geometry}
+
+\raggedbottom
+
+\usepackage{xcolor, listings}
+\usepackage{textcomp}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{HTML}{C42043}
+\definecolor{backcolour}{HTML}{F2F2F2}
+\definecolor{bookColor}{cmyk}{0,0,0,0.90}  
+\color{bookColor}
+
+\lstset{upquote=true}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codepurple},
+	numberstyle=\numberstyle,
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=10pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+}
+\lstset{style=mystyle}
+
+\newcommand\numberstyle[1]{%
+	\footnotesize
+	\color{codegray}%
+	\ttfamily
+	\ifnum#1<10 0\fi#1 |%
+}
+
+
+\usepackage{tabularx}
+\usepackage[]{graphicx}
+\usepackage[]{color}
+\usepackage{color, soul}
+\usepackage{alltt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{environ}
+\usepackage{tikz}
+\usetikzlibrary{matrix,calc, arrows, shapes.gates.logic.US,}
+\usetikzlibrary{positioning}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{pst-node}
+\usepackage{circuitikz}
+\usepackage{parskip}
+\usepackage[normalem]{ulem}
+\usepackage{cancel}
+\usepackage[english, italian]{babel}
+\selectlanguage{italian}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+\usepackage{float}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Overleaf Example},
+	pdfpagemode=FullScreen,
+}
+
+\graphicspath{ {Figures/} }
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{
+	\normalfont \normalsize
+	\textsc{Università degli Studi di Trieste - Dipartimento di Ingegneria
+		e Architettura} \\ [25pt]
+	\horrule{0.5pt} \\[0.4cm]
+	\huge Progetto - Basi di Dati\\
+	\emph{"Olimpiadi"}
+	\horrule{2pt} \\[0.5cm]
+}
+
+\author{Lorenzo Martin Diaz Avalos \\ IN0501010}
+
+\date{\normalsize Anno Accademico 2022-2023}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	
+	\newpage
+	
+	\section{Progettazione}
+	
+	
+	Ogni due anni si organizza l' edizione delle olimpiadi e si vuole realizzare un semplice database per gestire i dati.\\\\
+	Le olimpiadi si svolgono in un determinato periodo identificato da una data di apertura e chiusura ed è presente una cerimonia di inizio e fine edizione, inoltre hanno un simbolo rappresentativo, identificato tramite la mascotte.\\
+	Le edizioni delle olimpiadi sono composte da diversi giochi olimpici, identificati dalla disciplina, che hanno una piccola descrizione del gioco stesso. Ad ogni gioco possono competere più atleti, anche rispetto a più edizioni ed ogni atleta riceve una posizione rispetto alla gara a cui compete (può succedere che più atleti effettuino lo stesso risultato e che quindi abbiano la stessa posizione).\\\\
+	Di ogni atleta si vuole conoscere il nome, cognome, la data di nascita e la nazione da cui proviene, inoltre devono aver compiuto almeno il 18-mo anno di età prima della data di inizio dell' edizione a cui vogliono partecipare.\\\\
+	Le olimpiadi hanno luogo in una città, identificata dal loro nome e le città si trovano in un paese. Ogni città mette a disposizione un investimento in denaro per l' organizzazione dell' olimpiade. Le città sono divise per zone, in modo da riuscire a coprire tutta la città e ad assegnare i vari stadi in ogni zona.\\
+	Degli stadi si vuole sapere il nome e la capienza massima.\\\\
+	Le postazioni dello stadio possono essere prenotate attraverso i biglietti, che hanno un loro codice identificativo, una loro postazione, che non può superare la capienza dello stadio ed il nominativo della persona che acquista il biglietto, quindi nome, cognome ed età. Solo i maggiorenni possono acquistare il biglietto, quindi gli acquirenti possono acquistare più di un biglietto.
+	
+	\newpage
+	
+	\section{Operazioni}
+	
+	\begin{enumerate}
+		\item Si vuole ottenere la classifica delle nazioni con più atleti sul podio rispetto ad una data edizione (una volta ogni due anni)
+		\item Si vogliono ottenere gli investimenti ed il numero di stadi messi a disposizione da ogni città per ogni edizione (una volta ogni due anni)
+		\item Si vogliono ottenere il numero di biglietti rimanenti di tutti gli stadi di una data edizione (20 volte al mese)
+		\item Si vogliono ottenere gli atleti più premiati (sul podio) rispetto a tutte le edizioni (una volta ogni due anni)
+	\end{enumerate}
+	
+	
+	\newpage
+	
+	\section{Diagramma Entity - Relationship}
+	
+	\includegraphics[width=25cm, height=20cm]{Figures/Giochi Olimpici.pdf}
+	
+	In BLU ci sono le entità, in ARANCIONE le relazioni, in VERDE gli attributi ed in VERDE SCURO gli identificatori delle entità.
+	
+	
+	
+	\newpage
+	
+	\section{Dizionario dei dati}
+	\subsection{Dizionario delle entità}
+	
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ ||p{3.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}||  }
+			\hline
+			\hline
+			\textbf{Entità} & \textbf{Descrizione} & \textbf{Attributi} & \textbf{Identificatore}\\
+			
+			\hline
+			\hline
+			
+			Olimpiade   & Edizione dell' olimpiade   & edizione, anno, mascotte& edizione \\
+			\hline
+			Cerimonia &   Celebrazione di apertura e chiusura  & codice, data di apertura, data di chisura   & codice \\
+			\hline
+			Atleta & Atleti partecipanti all' olimpiade & ID, nome, cognome, nazione, data di nascita & ID \\
+			\hline
+			Gioco    & Gara di uno sport specifico & disciplina, descrizione & disciplina \\
+			\hline
+			Città &   Città in cui si svolge l' olimpiade  & nome, paese, investimento & nome \\
+			\hline
+			Zona & Coperture della città & nome, copertura & nome \\
+			\hline
+			Stadio & Impianti a disposizione dell' olimpiade  & nome, capienza & nome \\
+			\hline
+			Biglietto& Biglietto  & codice, postazione, nominativo   & codice \\
+			\hline
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	\subsection{Dizionario delle relazioni}
+	
+	\begin{table}[H]
+		\begin{tabular}{ ||p{3.6cm}|p{3.6cm}|p{3.6cm}|p{3.6cm}||  }
+			\hline
+			\hline
+			\textbf{Relazione} & \textbf{Descrizione} & \textbf{Componenti} & \textbf{Attributi}\\
+			
+			\hline
+			\hline
+			
+			Celebrazione & celebrazione di un' edizione dell' olimpiade & codice cerimonia, edizione olimpiade & \hspace{1.5cm}- \\
+			\hline
+			Composizione & gioco di una specifica edizione dell' olimpiade & edizione olimpiade, disciplina & \hspace{1.5cm} - \\
+			\hline
+			Competizione & Gara a cui partecipano gli atleti & ID, disciplina, edizione olimpiade & \hspace{3cm} posizionamento \\
+			\hline
+			Luogo & luogo in cui si svolge una specifica edizione dell' olimpiade & edizione olimpiade, nome città & \hspace{1.5cm} - \\
+			\hline
+			Sede & luoghi di una specifica città  & nome città, nome zona & \hspace{1.5cm} - \\
+			\hline
+			Impianto & impianti a disposzione di una specifica zona & nome zona, nome stadio & \hspace{1.5cm} - \\
+			\hline
+			Prenotazione & prenotazione del biglietto per uno specifico stadio  & nome stadio, codice biglietto & \hspace{1.5cm} - \\
+			\hline
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	
+	\newpage
+	
+	
+	\section{Vincoli non esprimibili graficamente}
+	
+	I vincoli non esprimbili graficamente sono:
+	\begin{itemize}
+		\item Gli atleti devono avere almeno 18 anni di età rispetto all' edizione dell' olimpiade a cui partecipano
+		\item Il numero di biglietti venduti per uno stadio deve essere minore della capienza dello stesso stadio
+		\item Il numero che rappresenta la postazione di un biglietto per uno stadio non può essere maggiore della capienza dello stesso stadio
+		\item Il numero che rappresenta la postazione di un biglietto per uno stadio non può essere duplicato
+		\item L' età di chi acquista un biglietto per un qualsiasi stadio deve essere almeno di 18 anni
+		\item La data di apertura di un' edizione di un' olimpiade deve essere precedente alla data di chiusura della stessa edizione dell' olimpiade
+		\item Il numero che rappresenta il posizionamento di un atleta deve essere positivo
+		
+	\end{itemize}
+	
+	\newpage
+	
+	\section{Tavola dei volumi}
+	
+	\begin{center}
+		\begin{tabularx}{0.8\textwidth}{ 
+				|| >{\centering\arraybackslash}X 
+				>{\centering\arraybackslash}X 
+				>{\centering\arraybackslash}X || }
+			\hline
+			\hline
+			\textbf{Concetto} &  \textbf{Tipo} & \textbf{Volume} \\
+			\hline
+			\hline
+			Olimpiade & E & 33 \\
+			\hline
+			Celebrazione  & R  & 33\\
+			\hline
+			Cerimonia  & E  & 33\\
+			\hline
+			Gioco Olimpico  & E  & 660 \\
+			\hline
+			Composizione  & R  & 660\\
+			\hline
+			Atleta  & E  & 40000\\
+			\hline
+			Competizione  & R  & 80000\\
+			\hline
+			Sede  & R  & 33\\
+			\hline
+			Città  & E  & 25\\
+			\hline
+			Luogo  & R  & 125\\
+			\hline
+			Zona  & E  & 125  \\
+			\hline
+			Impianto  & R  & 625\\
+			\hline
+			Stadio  & E  & 625 \\
+			\hline
+			Prenotazione  & R  & 6250000\\
+			\hline
+			Biglietto  & E  & 6250000 \\
+			\hline
+			\hline
+		\end{tabularx}
+		
+	\end{center}
+	
+	
+	
+	\newpage
+	\section{Analisi generale}
+	
+	
+	Si può osservare che l' attributo "Nominativo" dell' entità "Biglietto" è un attributo multivalore, contiene altri attributi che, rispetto a questa scelta di modellazione, non sono attributi che riguardano l' entità "Biglietto", quindi si è deciso di creare una nuova entità "Spettatore" che conterrà i suoi attributi "Nome", "Cognome", "Età" e "CF" aggiungendo la relazione "Acquisto" che collega le due entità di modo che ogni spettatore possa acquistare più biglietti ed ogni biglietto è acquistato da un solo spettatore.\\\\
+	Un' altra osservazione riguarda l' attributo "Anno" dell' entità "Olimpiade". Questo attributo si può calcolare direttamente attraverso l' attributo "Data Di Apertura" dell' entità "Cerimonia", perciò sarebbe un campo calcolato e non sarebbe rispettata la terza forma normale. Si è quindi deciso di toglierlo.\\\\
+	Osserviamo poi che l' entità "Gioco Olimpico" è identificato tramite la disciplina e l' identificatore esterno "Olimpiade", questo perché un gioco olimpico può essere ripetuto su più edizioni. \\\\
+	Per quanto riguarda la scelta degli identificatori primari si sono scelti in questo modo:
+	\begin{itemize}
+		\item Olimpiade: edizione dell' olimpiade
+		\item Cerimonia: codice cerimonia
+		\item Gioco Olimpico: disciplina e Olimpiade a cui riferisce
+		\item Atleta: codice identificativo
+		\item Città: nome della città
+		\item Zona: nome della zona
+		\item Stadio: nome dello stadio
+		\item Biglietto: codice identificativo del biglietto
+		\item Spettatore: codice fiscale dello spettatore\\
+	\end{itemize}
+	
+	Ulteriore osservazione riguarda l' entità "Biglietto". Dato che l' attributo "Postazione" deve essere non nullo e numericamente diverso per tutti i dati rispetto ad uno specifico stadio, si poteva scegliere di usare l' attributo "Postazione" come chiave primaria insieme all' identificatore esterno attraverso la relazione "Prenotazione" ma si è comunque scelto di usare un codice come chiave primaria per rispettare più una visione reale nella quale un biglietto di uno stadio non è identificato dal numero della postazione ma da un codice univoco.\\\\
+	Riguardo la progettazione fisica, ho deciso di non usare indici secondari dato che non ci sono attributi utilizzati con alta frequenza nelle ricerche.
+	
+	
+	\newpage
+	\section{Diagramma Entity - Relationship Ristrutturato}
+	
+	
+	\includegraphics[width=25cm, height=20cm]{Figures/Giochi Olimpici Ristrutturato.pdf}
+	
+	
+	\newpage
+	
+	
+	
+	\section{Schema Logico}
+	
+	\includegraphics[width=15cm, height=15cm]{Figures/giochi_olimpici.png}
+	
+	\begin{itemize}
+		\item città (\underline{nome}, paese, investimento)
+		\item cerimonia (\underline{codice}, dataApertura, dataChiusura)
+		\item olimpiade (\underline{edizione}, mascotte, sede, cerimonia)
+		\item zona (\underline{nome}, zonaCopertura, città)
+		\item stadio (\underline{nome}, capienza, zona)
+		\item spettatore (\underline{CF}, nome, cognome, età)
+		\item gioco (\underline{disciplina}, \underline{edizione}, descrizione)
+		\item atleta (\underline{ID}, nome, cognome, nazione, dataNascita)
+		\item biglietto (\underline{codice}, postazione, stadio, spettatore)
+		\item competizione (\underline{atleta}, \underline{gioco}, \underline{edizione}, posizione) \\\\
+	\end{itemize}
+	
+	
+	\section{Normalizzazione}
+	
+	Riguardo la normalizzazione si ha che:
+	\begin{itemize}
+		\item la prima forma normale è rispettata dato che tutte le colonne sono atomiche
+		\item la seconda forma normale è rispettata dato che la prima forma normale è rispettata e ciascuna colonna dipende dalla chiave primaria
+		\item la terza forma normale è rispettata dato che la seconda forma normale è rispettata ed ogni attributo dipende solo dalla chiave primaria\\\\
+	\end{itemize}
+	
+	Una spiegazione leggermente più dettagliata del perché la base di dati è in seconda forma normale è data dal fatto che, riguardo la tabella "gioco", questa presenta una chiave primaria composta dagli attributi "disciplina" ed "edizione"; l' attributo "descrizione" dipende dall' attributo "disciplina", in cui si ha una descrizione del gioco ma dipende anche dall' attributo "edizione" dato che può succedere che un gioco, nel corso delle edizioni, può cambiare regole, modalità e quindi a sua volta la descrizione stessa.\\\\
+	Osserviamo invece che la tabella "competizione" ha anch' essa una chiave primaria composta dagli attributi "atleta", "gioco" ed "edizione" e dato che l' atleta può competere sia in più giochi di una stessa edizione che in più edizioni, l' attributo "posizione", che rappresenta la posizone di un atleta nel gioco in cui partecipa, dipende da tutte le componenti della chiave primaria.
+	
+	\newpage
+	
+	\lstset{language=SQL}
+	\begin{lstlisting}
+		
+		
+		
+		
+	\end{lstlisting}
+	
+	\newpage
+	
+	\section{Query Aggiuntive}
+	
+	\lstset{language=SQL}
+	\begin{lstlisting}[deletekeywords={IDENTITY,INT},
+		morekeywords={clustered},    
+		framesep=10pt,
+		framextopmargin=10pt]
+		--SP per ottenere il numero di biglietti rimanenti degli stadi di una data edizione
+		
+		delimiter &&
+		create procedure getBigliettiDisponibili(in edizioneInput varchar(8))
+		begin
+		select s.nome as stadio, capienza - count(*) as biglietti_disponibili
+		from biglietto
+		inner join stadio s
+		on biglietto.stadio = s.nome
+		inner join zona z
+		on s.zona = z.nome
+		inner join citta c
+		on z.citta = c.nome
+		inner join olimpiade o
+		on c.nome = o.sede
+		where edizione like edizioneInput
+		group by s.nome;
+		end &&
+		delimiter ;
+		
+		
+		--SP per ottenere la classifica delle nazioni con piu atleti sul podio in una data edizione
+		
+		delimiter $$
+		create procedure getMedagliere(in edizioneInput varchar(8))
+		begin
+		select nazione, count(*) as numMedaglie
+		from atleta a
+		inner join competizione c
+		on a.ID = c.atleta
+		inner join gioco g
+		on ( c.gioco = g.disciplina 
+		and c.edizione = g.edizione )
+		where ((posizione = 1 or posizione = 2 or posizione = 3)
+		and g.edizione like edizioneInput )
+		group by nazione
+		order by numMedaglie desc;
+		end $$
+		delimiter ;
+		
+		
+		--SP per ottenere gli investimenti ed il numero di stadi messi a disposizione da ogni citta per ogni edizione
+		
+		delimiter $$
+		create procedure getInvestimenti()
+		begin
+		select edizione, c.nome as citta, investimento, 
+		count(s.nome) as numeroStadi
+		from olimpiade o
+		inner join citta c on o.sede = c.nome
+		inner join zona z on c.nome = z.citta
+		inner join stadio s on z.nome = s.zona
+		group by edizione, c.nome, investimento
+		order by edizione;
+		end $$
+		delimiter ;
+		
+		
+		--SP per ottenere gli atleti piu premiati (sul podio) in tutte le edizioni. Utilizzo una User Defined Function per evitare di ripetere righe di codice.
+		
+		delimiter $$
+		create function getNumMedaglie(id varchar(8), posizioneInput int(5))
+		returns int(5)
+		deterministic
+		begin
+		declare numeroMedaglie int(5);
+		select count(*) into numeroMedaglie 
+		from competizione
+		where atleta = id and posizione = posizioneInput;
+		return numeroMedaglie;
+		end $$
+		delimiter ;
+		
+		
+		delimiter $$
+		create procedure getAtletiPiuPremiati()
+		begin
+		select concat(a.nome, ' ', a.cognome) as nome,
+		getNumMedaglie(a.ID, 1)        as numeroOri,
+		getNumMedaglie(a.ID, 2)        as numeroArgenti,
+		getNumMedaglie(a.ID, 3)        as numeroBronzi
+		from atleta a
+		inner join competizione c on a.ID = c.atleta
+		where posizione = 1
+		or posizione = 2
+		or posizione = 3
+		group by ID
+		order by numeroOri desc, numeroArgenti desc, numeroBronzi desc;
+		end $$
+		delimiter ;
+		
+		
+		--Trigger per controllare che non vengano venduti piu biglietti della capienza dello stadio
+		
+		delimiter $$
+		create trigger checkCapienza
+		before insert
+		on biglietto
+		for each row
+		begin
+		declare capienzaStadio int(11);
+		declare numeroBiglietti int(11);
+		select capienza into capienzaStadio 
+		from stadio
+		where nome like NEW.stadio;
+		select count(*) into numeroBiglietti 
+		from biglietto 
+		where stadio like NEW.stadio;
+		if (numeroBiglietti >= capienzaStadio) then
+		set @signal = concat('Capienza piena per lo stadio ', NEW.stadio);
+		SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = @signal;
+		end if;
+		end $$
+		delimiter ;
+		
+		
+		--Trigger per controllare che il numero della postazione di un biglietto non sia maggiore della capienza dello stadio
+		
+		delimiter $$
+		create trigger checkPostazione
+		before insert
+		on biglietto
+		for each row
+		begin
+		declare capienzaStadio int(11);
+		select capienza into capienzaStadio 
+		from stadio 
+		where nome like NEW.stadio;
+		if (NEW.postazione > capienzaStadio) then
+		set @signal = concat('La postazione ', NEW.postazione, 
+		' per lo stadio ', NEW.stadio, ' non e valida');
+		SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = @signal;
+		end if;
+		end $$
+		delimiter ;
+		
+		
+		--Trigger per controllare che un atleta abbia almeno 18 anni rispetto alla data di inizio dell edizione in cui compete
+		
+		delimiter $$
+		create trigger checkAge
+		before insert
+		on competizione
+		for each row
+		begin
+		declare dataNascitaAtleta date;
+		declare dataEdizione date;
+		select dataNascita into dataNascitaAtleta 
+		from atleta 
+		where id = NEW.atleta;
+		select dataApertura
+		into dataEdizione
+		from cerimonia c
+		inner join olimpiade o on c.codice = o.cerimonia
+		where o.edizione like NEW.edizione;
+		if (year(dataEdizione) - year(dataNascitaAtleta) < 18) then
+		set @signal =
+		concat('L atleta ', (select concat(a.nome, ' ', a.cognome) 
+		from atleta a 
+		where id like NEW.atleta),
+		' e troppo giovane per competere nell edizione ',
+		(select edizione 
+		from olimpiade o 
+		where o.edizione like NEW.edizione), '. Tra ',
+		(18 - (year(sysdate()) - year(dataNascitaAtleta))),
+		' anni potra partecipare alla prossima edizione');
+		SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = @signal;
+		end if;
+		end $$
+		delimiter ;
+		
+		
+		--Trigger per controllare che una postazione di un biglietto per uno stadio non sia duplicata
+		
+		delimiter $$
+		create trigger checkPostazioniDuplicate
+		before insert
+		on biglietto
+		for each row
+		begin
+		set @postazione = -1;
+		select postazione into @postazione 
+		from biglietto 
+		where postazione = NEW.postazione and stadio = NEW.stadio;
+		if (@postazione > 0) then
+		set @signal = concat('La postazione ', NEW.postazione, 
+		' per lo stadio ', NEW.stadio, 
+		' e gia occupata. Trovare un altra postazione!');
+		SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = @signal;
+		end if;
+		
+		end $$
+		delimiter ;
+		
+		
+		-- Vista per ottenere gli atleti che hanno partecipato alle edizioni delle olimpiadi, la relativa nazione, disciplina e posizione di gara
+		
+		create view atletiPartecipanti as
+		select concat(a.nome, ' ', a.cognome) as atleta, nazione, 
+		disciplina, posizione, c.edizione
+		from atleta a
+		inner join competizione c on a.ID = c.atleta
+		inner join gioco g on (c.gioco = g.disciplina 
+		and c.edizione = g.edizione)
+		order by edizione, disciplina, posizione;
+		
+		
+		-- Crezione della tabella "spettatore" per soddisfare il vincolo non esprimibile graficamente in cui l eta di chi acquista un biglietto per un qualsiasi stadio deve essere almeno di 18 anni
+		
+		drop table if exists spettatore;
+		
+		create table spettatore (
+		CF      varchar(20) not null,
+		nome    varchar(20) not null,
+		cognome varchar(20) not null,
+		eta     int(11)     not null,
+		primary key (CF),
+		constraint checkSpettatoreAge check (eta >= 18)
+		);
+		
+		
+		-- Crezione della tabella "cerimonia" per soddisfare il vincolo non esprimibile graficamente in cui la data di apertura di un edizione di un olimpiade deve essere precedente alla data di chiusura della stessa edizione dell olimpiade
+		
+		drop table if exists cerimonia;
+		
+		create table cerimonia (
+		codice       varchar(8) not null,
+		dataApertura date       not null,
+		dataChiusura date       not null,
+		primary key (codice),
+		constraint cerimonia_ibfk_1 check ( dataApertura < dataChiusura )
+		);
+		
+		
+		-- Crezione della tabella "competizione" per soddisfare il vincolo non esprimibile graficamente in cui il numero che rappresenta il posizionamento di un atleta deve essere positivo
+		
+		drop table if exists competizione;
+		
+		create table competizione (
+		atleta    varchar(8)  not null,
+		gioco     varchar(20) not null,
+		edizione  varchar(8)  not null,
+		posizione int(11)     not null,
+		primary key (atleta, gioco, edizione),
+		constraint competizione_ibfk_1 foreign key (atleta) references atleta (ID),
+		constraint competizione_ibfk_2 foreign key (gioco, edizione) references gioco (disciplina, edizione),
+		constraint competizione_ibfk_3 check ( posizione > 0 )
+		);
+	\end{lstlisting}
+	
+\end{document}
