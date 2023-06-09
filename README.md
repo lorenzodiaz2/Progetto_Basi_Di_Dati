@@ -1,5 +1,5 @@
 # Progetto_Basi_Di_Dati
-Dababase per il corso Basi Di Dati.
+Database per il corso Basi Di Dati.
 
 Nel folder SQL c'è tutto il codice scritto per creare le varie tabelle, query e fare gli inserimenti.
 
