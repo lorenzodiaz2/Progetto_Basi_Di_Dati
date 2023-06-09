@@ -1,7 +1,7 @@
 # Progetto_Basi_Di_Dati
 Database per il corso Basi Di Dati.
 
-Nel folder SQL c'è tutto il codice scritto per creare le varie tabelle, query e fare gli inserimenti.
+Nel folder SQL c'è tutto il codice scritto per creare le varie tabelle, query e inserimenti dei dati.
 
 In PDF ci sono il pdf della presentazione del progetto, le varie immagini usate e il codice in latex
 
