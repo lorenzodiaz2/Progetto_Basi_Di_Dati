@@ -5,7 +5,7 @@ public class Main {
 
   public static void main(String[] args) {
 
-    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/giochi_olimpici", "root", "LORENZODIAZ2002!") ) {
+    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/giochi_olimpici", "root", "******") ) {
 
       Scanner input = new Scanner(System.in);
       int operazione;
